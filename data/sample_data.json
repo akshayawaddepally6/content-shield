@@ -1,0 +1,143 @@
+{
+    "test_cases": [
+      {
+        "id": 1,
+        "text": "Hello! How are you doing today? I hope you're having a wonderful day!",
+        "expected_flagged": false,
+        "category": "safe",
+        "description": "Friendly greeting"
+      },
+      {
+        "id": 2,
+        "text": "You are an idiot and this is the worst thing I've ever seen.",
+        "expected_flagged": true,
+        "category": "insult",
+        "description": "Direct insult"
+      },
+      {
+        "id": 3,
+        "text": "I hate this product. It's complete garbage and a waste of money.",
+        "expected_flagged": true,
+        "category": "toxic",
+        "description": "Toxic criticism"
+      },
+      {
+        "id": 4,
+        "text": "This movie was disappointing. The plot was weak and the acting was subpar.",
+        "expected_flagged": false,
+        "category": "constructive_criticism",
+        "description": "Legitimate criticism"
+      },
+      {
+        "id": 5,
+        "text": "I'm going to find you and hurt you badly.",
+        "expected_flagged": true,
+        "category": "threat",
+        "description": "Direct threat"
+      },
+      {
+        "id": 6,
+        "text": "Thank you so much for your help! I really appreciate it.",
+        "expected_flagged": false,
+        "category": "gratitude",
+        "description": "Positive feedback"
+      },
+      {
+        "id": 7,
+        "text": "People like you make me sick. You're disgusting.",
+        "expected_flagged": true,
+        "category": "severe_toxic",
+        "description": "Severe toxicity"
+      },
+      {
+        "id": 8,
+        "text": "I disagree with your opinion, but I respect your right to have it.",
+        "expected_flagged": false,
+        "category": "respectful_disagreement",
+        "description": "Respectful discourse"
+      },
+      {
+        "id": 9,
+        "text": "This is absolutely terrible. I hate everything about this stupid idea.",
+        "expected_flagged": true,
+        "category": "toxic",
+        "description": "Strong negative sentiment"
+      },
+      {
+        "id": 10,
+        "text": "Could you please help me understand this concept better?",
+        "expected_flagged": false,
+        "category": "question",
+        "description": "Polite question"
+      }
+    ],
+    "edge_cases": [
+      {
+        "id": 11,
+        "text": "",
+        "description": "Empty text",
+        "should_error": true
+      },
+      {
+        "id": 12,
+        "text": "a",
+        "description": "Single character",
+        "expected_flagged": false
+      },
+      {
+        "id": 13,
+        "text": "The quick brown fox jumps over the lazy dog. " * 100,
+        "description": "Very long text (truncated to 512 tokens)",
+        "expected_flagged": false
+      },
+      {
+        "id": 14,
+        "text": "😊👍🎉",
+        "description": "Only emojis",
+        "expected_flagged": false
+      },
+      {
+        "id": 15,
+        "text": "THIS IS ALL CAPS BUT NOT TOXIC",
+        "description": "All caps neutral",
+        "expected_flagged": false
+      }
+    ],
+    "multilingual_samples": [
+      {
+        "id": 16,
+        "text": "Bonjour! Comment allez-vous?",
+        "language": "French",
+        "description": "Non-English greeting"
+      },
+      {
+        "id": 17,
+        "text": "Hola, ¿cómo estás?",
+        "language": "Spanish",
+        "description": "Spanish greeting"
+      },
+      {
+        "id": 18,
+        "text": "こんにちは",
+        "language": "Japanese",
+        "description": "Japanese greeting"
+      }
+    ],
+    "performance_benchmarks": [
+      {
+        "text_length": 10,
+        "expected_latency_ms": 30,
+        "description": "Short text"
+      },
+      {
+        "text_length": 100,
+        "expected_latency_ms": 45,
+        "description": "Medium text"
+      },
+      {
+        "text_length": 500,
+        "expected_latency_ms": 80,
+        "description": "Long text"
+      }
+    ]
+  }
